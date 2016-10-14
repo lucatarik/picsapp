@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="js/libs/jquery-mobile/jquery.mobile.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script type="text/javascript" src="js/libs/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery-mobile/jquery.mobile.min.js"></script>
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div data-role="header">
+            <h1>Calcolapizza</h1>
+        </div>
+        <div role="main" class="ui-content">
+
+            <div data-role="tabs"  id="tabs">
+                <div data-role="navbar" style="    position: fixed;    bottom: 0;    left: 3%;    width: 90%;    z-index: 2;    border: 10px solid white;">
+                    <ul>
+                        <li><a href="#one"  data-ajax="false" class="ui-btn-active">Inizo</a></li>
+                        <li><a href="#two" data-ajax="false" >Avanzate</a></li>
+                        <li><a href="#tre"  data-ajax="false" >Risultato</a></li>
+                    </ul>
+                </div>
+                <div id="one">
+                    <div class="grd-row wprotein">
+                        <div class="grd-row-col-3-6--md grd-row-col-6">
+                            <span>&nbsp;</span>
+                            <p>Volete un <strong>suggerimento su Idro e Ore di lievitazione</strong>?<br>
+                                Inserite le proteine (tra 9 e 15) o il W (tra 90 e 450) nella casella qui <span class="hiddensmall">a destra</span><span class="hiddenbig">sotto</span>.</p>
+                        </div>
+                        <div class="grd-row-col-3-6--md grd-row-col-6" title="Inserire un num. tra 9 e 15 o tra 90 e 450">
+                            <span>W o Proteine (facoltativo)</span>
+                            <input id="wprot" placeholder="Inserire un num. tra 9 e 15 o tra 90 e 450">
+                        </div>
+                    </div>                
+                    <div class="grd-row">
+                        <div class="grd-row-col-3-6--md grd-row-col-6" title="Inserire un numero intero maggiore di 0">
+                            <span>Numero panielli</span>
+                            <input id="panielli" value="1" placeholder="Inserire un numero intero maggiore di 0">
+                        </div>
+                        <div class="grd-row-col-3-6--md grd-row-col-6" title="Inserire un numero positivo">
+                            <span>Peso panielli (grammi)</span>
+                            <input id="peso" value="200">
+                        </div>
+                    </div>
+                    <br><br><br><br><br>
+                </div>
+                <div id="two">
+                    <div class="grd-row">
+                        <div class="grd-row-col-3-6--md grd-row-col-6" title="Inserire un numero tra 50 e 100">
+                            <span>Idratazione desiderata (% da 50 a 100)</span>
+                            <input id="idro" class="nowprot" value="65">
+                        </div>
+                        <div class="grd-row-col-3-6--md grd-row-col-6" title="Inserire un numero tra 0 e 70">
+                            <span>Sale per litro d'acqua (grammi)</span>
+                            <input id="salepl" value="50">
+                        </div>
+                    </div>
+                    <div class="grd-row">
+                        <div class="grd-row-col-3-6--md grd-row-col-6" title="Inserire un numero tra 3 e 96">
+                            <span>Ore di lievitazione totali...</span>
+                            <input id="liev" class="nowprot" value="24">
+                        </div>
+                        <div class="grd-row-col-3-6--md grd-row-col-6">
+                            <span>... di cui Ore in frigorifero</span>
+                            <input id="frigo" value="0">
+                        </div>                    
+                    </div>
+                    <div class="grd-row">
+                        <div class="grd-row-col-3-6--md grd-row-col-6" title="Inserire un numero tra 15 e 35">
+                            <span>Temperatura ambiente (°C)</span>
+                            <input id="gradi" value="20" placeholder="Inserire un numero tra 15 e 35">
+                        </div>
+                        <div class="grd-row-col-3-6--md grd-row-col-6" title="Inserire un numero tra 0 e 100">
+                            <span>Olio/strutto/burro (grammi per litro)</span>
+                            <input id="grassipl" value="0" placeholder="Inserire un numero tra 0 e 100">
+                        </div>
+                    </div>
+                    <div class="grd-row">
+                        <div class="grd-row-col-3-6--md grd-row-col-6" title="">
+                            <span>Pasta di riporto (% su impasto totale)</span>
+                            <input id="pdrp" value="0">
+                        </div>
+                        <div class="grd-row-col-3-6--md grd-row-col-6 radiogaga">
+                            <span>Tipologia pasta di riporto:</span><br>
+                            <br>
+                            <input type="radio" name="pdrt" value="1"><br><span>Stanca</span><br><br>
+                            <input type="radio" name="pdrt" value="2" checked><span><br>Normale</span><br><br>
+                            <input type="radio" name="pdrt" value="3"><br><span>Vivace</span><br><br><br><br>
+                        </div>
+                    </div>
+                </div>
+                <div id="tre">
+                    <div class="grd-row">
+                        <p class="grd-row-col-6-6--md grd-row-col-6 txt--center">
+                            Forza farina indicativa consigliata: W &asymp; <span id="forza"></span>
+                        </p>                    
+                    </div>
+                    <div class="grd-row">
+                        <div class="grd-row-col-3-6--md grd-row-col-6 txt--center">
+                            <div class="results">
+                                <span>Farina:</span>
+                                <span id="farina"></span>
+                            </div>
+                        </div>
+                        <div class="grd-row-col-3-6--md grd-row-col-6 txt--center">
+                            <div class="results">
+                                <span>Acqua:</span>
+                                <span id="aqua"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grd-row">
+                        <div class="grd-row-col-3-6--md grd-row-col-6 txt--center">
+                            <div class="results">
+                                <span>Sale:</span>
+                                <span id="sale"></span>
+                            </div>
+                        </div>
+                        <div class="grd-row-col-3-6--md grd-row-col-6 txt--center">
+                            <div class="results">
+                                <span>Olio/Strutto/Burro:</span>
+                                <span id="grassi"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grd-row">
+                        <div class="grd-row-col-3-6--md grd-row-col-6 txt--center">
+                            <div class="results">
+                                <span>Pasta di riporto:</span>
+                                <span id="pdr"></span>
+                            </div>
+                        </div>                    
+                        <div class="grd-row-col-3-6--md grd-row-col-6 txt--center">
+                            <div class="results">
+                                <span>Lievito di birra fresco:</span>
+                                <span id="lievito"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <footer class="grd-row">
+                        <p class="grd-row-col-6 txt--center">
+                            Presentato da:<br>
+                            <a href="http://laconfraternitadellapizza.forumfree.it/" target="_blank">La Confraternita della Pizza</a>
+                        </p>
+                    </footer>
+
+                </div>
+            </div>       
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>    
+    </body>
+</html>
